@@ -10,7 +10,7 @@ export interface ApiResponse<T> {
     message: string;
     details?: unknown;
   };
-  status: number;  
+  status: number;
   timestamp: string;
 }
 
@@ -65,7 +65,7 @@ export class ServiceApi {
   // --- API METHODS ---
   static async getAllServices(): Promise<ApiResponse<Service[]>> {
     try {
-      const res = await this.axiosInstance.get('/services');
+      const res = await this.axiosInstance.get<ApiResponse<Service[]>>('/services');
       return res.data;
     } catch (err) {
       return this.handleError(err);
@@ -74,25 +74,25 @@ export class ServiceApi {
 
   static async getServiceById(id: number): Promise<ApiResponse<Service>> {
     try {
-      const res = await this.axiosInstance.get(`/services/${id}`);
+      const res = await this.axiosInstance.get<ApiResponse<Service>>(`/services/${id}`);
       return res.data;
     } catch (err) {
       return this.handleError(err);
     }
   }
 
-  static async createService(service: Omit<Service, 'id' | 'created_at' | 'updated_at'>): Promise<ApiResponse<{ id: number }>> {
+  static async createService(service: Omit<Service, 'id' | 'created_at' | 'updated_at'>): Promise<ApiResponse<Service>> {
     try {
-      const res = await this.axiosInstance.post('/services', service);
+      const res = await this.axiosInstance.post<ApiResponse<Service>>('/services', service);
       return res.data;
     } catch (err) {
       return this.handleError(err);
     }
   }
 
-  static async updateService(id: number, service: Partial<Service>): Promise<ApiResponse<null>> {
+  static async updateService(id: number, service: Partial<Service>): Promise<ApiResponse<Service>> {
     try {
-      const res = await this.axiosInstance.put(`/services/${id}`, service);
+      const res = await this.axiosInstance.put<ApiResponse<Service>>(`/services/${id}`, service);
       return res.data;
     } catch (err) {
       return this.handleError(err);
@@ -101,7 +101,7 @@ export class ServiceApi {
 
   static async deleteService(id: number): Promise<ApiResponse<null>> {
     try {
-      const res = await this.axiosInstance.delete(`/services/${id}`);
+      const res = await this.axiosInstance.delete<ApiResponse<null>>(`/services/${id}`);
       return res.data;
     } catch (err) {
       return this.handleError(err);
@@ -110,7 +110,7 @@ export class ServiceApi {
 
   static async getServicesByUser(): Promise<ApiResponse<Service[]>> {
     try {
-      const res = await this.axiosInstance.get('/services/my');
+      const res = await this.axiosInstance.get<ApiResponse<Service[]>>('/services/my');
       return res.data;
     } catch (err) {
       return this.handleError(err);
@@ -119,7 +119,7 @@ export class ServiceApi {
 
   static async toggleServiceStatus(id: number, isActive: boolean): Promise<ApiResponse<Service>> {
     try {
-      const res = await this.axiosInstance.patch(`/services/${id}/status`, { is_active: isActive });
+      const res = await this.axiosInstance.patch<ApiResponse<Service>>(`/services/${id}/status`, { is_active: isActive });
       return res.data;
     } catch (err) {
       return this.handleError(err);
@@ -128,7 +128,7 @@ export class ServiceApi {
 
   static async searchServices(query: string): Promise<ApiResponse<Service[]>> {
     try {
-      const res = await this.axiosInstance.get(`/services?search=${encodeURIComponent(query)}`);
+      const res = await this.axiosInstance.get<ApiResponse<Service[]>>(`/services?search=${encodeURIComponent(query)}`);
       return res.data;
     } catch (err) {
       return this.handleError(err);

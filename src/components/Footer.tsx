@@ -1,12 +1,17 @@
-
 import { motion } from "framer-motion";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+
+interface SocialLink {
+  name: string;
+  href: string;
+  icon: JSX.Element;
+}
 
 export const Footer: React.FC = () => {
   const companyName = "Company";
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { name: "GitHub", href: "https://github.com", icon: <Github className="w-5 h-5" /> },
     { name: "Twitter", href: "https://twitter.com", icon: <Twitter className="w-5 h-5" /> },
     { name: "LinkedIn", href: "https://linkedin.com", icon: <Linkedin className="w-5 h-5" /> },
@@ -34,7 +39,7 @@ export const Footer: React.FC = () => {
 
           {/* Social Links */}
           <div className="flex items-center gap-6">
-            {socialLinks.map((social, i) => (
+            {socialLinks.map((social) => (
               <motion.a
                 key={social.name}
                 href={social.href}

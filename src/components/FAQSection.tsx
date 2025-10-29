@@ -6,7 +6,7 @@ export const FAQSection: React.FC = () => {
   const title = "Frequently Asked Questions";
   const description = "Common questions about our platform.";
 
-  // ✅ Memoized FAQ data (for performance)
+
   const faqs = useMemo(
     () => [
       {

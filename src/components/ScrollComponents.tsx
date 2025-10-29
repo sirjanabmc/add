@@ -4,8 +4,8 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUp, Home, Info, Layers, Mail } from "lucide-react";
 import { useState } from "react";
 
-
-export const ScrollProgress: React.FC = () => {
+// Scroll Progress Bar
+export const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,17 +21,13 @@ export const ScrollProgress: React.FC = () => {
   );
 };
 
-// ==========================================
-// 🚀 Floating "Back to Top" Action Button
-// ==========================================
-export const FloatingActionButton: React.FC = () => {
+// Floating "Back to Top" Button
+export const FloatingActionButton = () => {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [0, 1]);
   const scale = useTransform(scrollY, [0, 300], [0.8, 1]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <motion.button
@@ -47,8 +43,8 @@ export const FloatingActionButton: React.FC = () => {
   );
 };
 
-
-export const FloatingNav: React.FC = () => {
+// Floating Navigation
+export const FloatingNav = () => {
   const [active, setActive] = useState("home");
 
   const scrollToSection = (id: string) => {
@@ -92,14 +88,11 @@ export const FloatingNav: React.FC = () => {
   );
 };
 
-
-
-export const PageUtilities: React.FC = () => {
-  return (
-    <>
-      <ScrollProgress />
-      <FloatingNav />
-      <FloatingActionButton />
-    </>
-  );
-};
+// Page Utilities Wrapper
+export const PageUtilities = () => (
+  <>
+    <ScrollProgress />
+    <FloatingNav />
+    <FloatingActionButton />
+  </>
+);

@@ -1,4 +1,5 @@
 "use client";
+
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -44,9 +45,9 @@ export const Header: React.FC = () => {
           {logoText}
         </motion.div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <motion.a
               key={item.name}
               href={item.href}
@@ -55,9 +56,7 @@ export const Header: React.FC = () => {
               className="relative text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-all duration-200"
             >
               {item.name}
-              <motion.span
-                className="absolute left-0 bottom-0 w-full h-[2px] bg-zinc-900 dark:bg-white origin-left scale-x-0 hover:scale-x-100 transition-transform duration-300"
-              />
+              <motion.span className="absolute left-0 bottom-0 w-full h-[2px] bg-zinc-900 dark:bg-white origin-left scale-x-0 hover:scale-x-100 transition-transform duration-300" />
             </motion.a>
           ))}
         </div>
@@ -72,7 +71,7 @@ export const Header: React.FC = () => {
           {ctaText}
         </motion.a>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu */}
         <motion.button
           className="md:hidden p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all duration-200 cursor-pointer"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -105,7 +104,7 @@ export const Header: React.FC = () => {
         </motion.button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -130,13 +129,13 @@ export const Header: React.FC = () => {
               ))}
 
               <motion.a
-                href={ctaHref}
+                href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="block w-full text-center px-6 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg mt-4 transition-all duration-200 shadow hover:shadow-md"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {ctaText}
+                Get Started
               </motion.a>
             </div>
           </motion.div>

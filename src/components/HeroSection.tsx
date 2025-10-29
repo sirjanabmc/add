@@ -1,4 +1,5 @@
 "use client";
+
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useRef } from "react";
@@ -13,15 +14,14 @@ export const HeroSection: React.FC = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1588345921489-f61ad896c562?q=80&w=2340&auto=format&fit=crop')`,
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1588345921489-f61ad896c562?q=80&w=2340&auto=format&fit=crop')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Background Overlay for Readability */}
       <div className="absolute inset-0 bg-black/50 dark:bg-black/60 backdrop-blur-[1px]" />
 
-      {/* Content */}
       <div className="container mx-auto max-w-4xl text-center relative z-10">
         <motion.div
           className="space-y-8"
@@ -29,7 +29,6 @@ export const HeroSection: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Title */}
           <motion.h1
             className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 dark:from-zinc-100 dark:via-white dark:to-zinc-200 bg-clip-text text-transparent leading-tight"
             initial={{ opacity: 0, y: 30 }}
@@ -39,7 +38,6 @@ export const HeroSection: React.FC = () => {
             Build Something Amazing
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             className="text-lg md:text-xl text-zinc-200 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -50,7 +48,6 @@ export const HeroSection: React.FC = () => {
             platform — simple, powerful, and built for teams.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
             initial={{ opacity: 0, y: 30 }}
@@ -77,7 +74,6 @@ export const HeroSection: React.FC = () => {
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             className="flex flex-col sm:flex-row justify-center items-center gap-8 pt-16 text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -94,9 +90,7 @@ export const HeroSection: React.FC = () => {
                 whileHover={{ y: -3 }}
                 className="text-center transition-transform duration-200"
               >
-                <div className="text-3xl font-bold text-white">
-                  {stat.number}
-                </div>
+                <div className="text-3xl font-bold text-white">{stat.number}</div>
                 <div className="text-sm text-zinc-300 mt-1">{stat.label}</div>
               </motion.div>
             ))}
@@ -104,7 +98,6 @@ export const HeroSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}

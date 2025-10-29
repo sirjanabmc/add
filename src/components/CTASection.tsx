@@ -1,34 +1,36 @@
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { useRef } from 'react';
 
 export const CTASection: React.FC = () => {
   const title = 'Let’s Connect';
   const description = 'Have questions or want to work together? Reach out and we’ll get back to you soon.';
 
+  
   const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      label: 'Email',
-      value: 'hello@company.com',
-      href: 'mailto:hello@company.com',
-      gradient: 'from-indigo-500 to-purple-600',
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-      gradient: 'from-emerald-500 to-teal-600',
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      label: 'Address',
-      value: 'San Francisco, CA',
-      href: '#',
-      gradient: 'from-rose-500 to-pink-600',
-    },
-  ];
+  {
+    icon: <FiMail className="w-6 h-6" />,
+    label: 'Email',
+    value: 'hello@company.com',
+    href: 'mailto:hello@company.com',
+    gradient: 'from-indigo-500 to-purple-600',
+  },
+  {
+    icon: <FiPhone className="w-6 h-6" />,
+    label: 'Phone',
+    value: '+1 (555) 123-4567',
+    href: 'tel:+15551234567',
+    gradient: 'from-emerald-500 to-teal-600',
+  },
+  {
+    icon: <FiMapPin className="w-6 h-6" />,
+    label: 'Address',
+    value: 'San Francisco, CA',
+    href: '#',
+    gradient: 'from-rose-500 to-pink-600',
+  },
+];
+
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });

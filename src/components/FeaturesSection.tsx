@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Bike, BookOpen, Home, Wrench, Shield, Users, LucideIcon } from 'lucide-react';
+import { Bike, BookOpen, Home, Wrench, Shield, Users } from 'lucide-react';
 
 interface Feature {
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string }>; // Fix typing
   title: string;
   description: string;
   color: string;
@@ -13,7 +13,7 @@ interface Feature {
 const FeaturesSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true });
-  
+
   const features: Feature[] = [
     {
       icon: Bike,
@@ -77,16 +77,12 @@ const FeaturesSection: React.FC = () => {
   };
 
   return (
-    <section
-      ref={containerRef}
-      className="py-24 px-6 bg-white relative overflow-hidden"
-    >
-      {/* Background decoration */}
+    <section ref={containerRef} className="py-24 px-6 bg-white relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 opacity-50" />
-      
-      {/* Content container */}
+
       <div className="container mx-auto max-w-6xl relative">
-        {/* Section header */}
+        {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -111,12 +107,12 @@ const FeaturesSection: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        {/* Features grid */}
+        {/* Features Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
         >
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -130,12 +126,8 @@ const FeaturesSection: React.FC = () => {
                 <div className={`inline-block p-3 rounded-xl bg-gradient-to-br ${feature.color} shadow-lg mb-6`}>
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-zinc-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  {feature.description}
-                </p>
+                <h3 className="text-xl font-semibold text-zinc-900 mb-3">{feature.title}</h3>
+                <p className="text-zinc-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             );
           })}
